@@ -1,5 +1,6 @@
 package Tests;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -41,6 +42,13 @@ public class LoginTest
 
         WebElement enterElement = driver.findElement(By.id("enterbtn"));
         enterElement.click();
+
+        WebElement messageElement = driver.findElement(By.id("errormsg"));
+        String expectedError = "Invalid User Name or PassWord";
+        String actualError = messageElement.getText();
+
+        //Assert.assertEquals(expectedError, actualError);
+        Assert.assertEquals("Mesajul de login nu este corect", expectedError, actualError);
         //driver.quit();
     }
 }
