@@ -1,5 +1,6 @@
 package Tests;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -30,6 +31,10 @@ public class RegisterTest
         //skipSignIn button
         WebElement skipSignIn = driver.findElement(By.id("btn2"));
         skipSignIn.click();
+
+        //se valideaza accesarea paginii de Register
+        String actualRegister = driver.getTitle();
+        Assert.assertEquals("Register", actualRegister);
 
         //first name
         WebElement firstNameElement = driver.findElement(By.cssSelector("input[placeholder = 'First Name']"));
@@ -74,6 +79,9 @@ public class RegisterTest
         //pentru a inchide drop-down-ul "special" de languages
         genderElement.click();
 
+        //password
+        WebElement passwordElement = driver.findElement(By.id("firstpassword"));
+        passwordElement.sendKeys("pass");
 
 
     }
