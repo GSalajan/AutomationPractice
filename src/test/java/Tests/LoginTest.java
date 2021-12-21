@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class LoginTest
 {
-    //webdriver = variabila care ne ajuta sa interactionam cu site-ul si elementele unui site
+    //webdriver = variabila care ne ajuta sa interactionam cu site-ul si elementele lui
     public WebDriver driver;
 
     @Test
@@ -50,5 +50,7 @@ public class LoginTest
         //Assert.assertEquals(expectedError, actualError);
         Assert.assertEquals("Mesajul de login nu este corect", expectedError, actualError);
         //driver.quit();
+
+
     }
 }
