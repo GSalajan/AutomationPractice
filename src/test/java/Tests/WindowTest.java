@@ -49,7 +49,6 @@ public class WindowTest
         //navigate doar acceseaza url
 
 
-        //ul[class='nav nav-tabs nav-stacked'] li a     ---> cu ' ' se coboara in ierarhie
         List<WebElement> windowOptions = driver.findElements(By.cssSelector("ul[class = 'nav nav-tabs nav-stacked'] li a"));
         windowOptions.get(0).click();
 
