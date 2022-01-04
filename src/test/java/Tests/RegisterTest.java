@@ -1,33 +1,22 @@
 package Tests;
 
+import Base.SharedData;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 //xpath e mai precis decat css. css e mai rapid
 
 import java.util.List;
 
-public class RegisterTest
+public class RegisterTest extends SharedData
 {
-    public WebDriver driver;
-
     @Test
     public void Test()
     {
-        //specificam unde se afla driverul pt browser
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\User\\Desktop\\Azimut\\Kits\\Automation\\chromedriver.exe");
-        //deschidem browserul
-        driver = new ChromeDriver();
-
-        //adaugam adresa web
-        driver.get("http://demo.automationtesting.in/Index.html");
-        driver.manage().window().maximize();
-
         //skipSignIn button
         WebElement skipSignIn = driver.findElement(By.id("btn2"));
         skipSignIn.click();
@@ -72,12 +61,16 @@ public class RegisterTest
         WebElement languageElement = driver.findElement(By.cssSelector("div[id='msdd']"));
         languageElement.click();
 
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("scroll(0, 500);");
+
         List<WebElement> languageElements = driver.findElements(By.xpath("//li[@class='ng-scope']/a"));
         for (Integer i = 0; i< languageElements.size(); i++)
         {
             if (languageElements.get(i).getText().equals("Catalan"))
             {
                 languageElements.get(i).click();
+                break;
             }
         }
         //pentru a inchide drop-down-ul "special" de languages
@@ -95,6 +88,7 @@ public class RegisterTest
             if (countryElements.get(i).getText().equals("Australia"))
             {
                 countryElements.get(i).click();
+                break;
             }
         }
         genderElement.click();*/
@@ -113,7 +107,5 @@ public class RegisterTest
         confirmPasswordElement.sendKeys("pass");
 
         //hhh
-
-
     }
 }

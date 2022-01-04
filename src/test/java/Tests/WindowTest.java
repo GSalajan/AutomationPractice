@@ -1,27 +1,18 @@
 package Tests;
 
+import Base.SharedData;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class WindowTest
+public class WindowTest extends SharedData
 {
-    public WebDriver driver;
-
     @Test
     public void Test()
     {
-        //specificam unde se afla driverul pt browser
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\User\\Desktop\\Azimut\\Kits\\Automation\\chromedriver.exe");
-        //deschidem browserul
-        driver = new ChromeDriver();
-
         //adaugam adresa web
         driver.get("http://demo.automationtesting.in/Index.html");
         driver.manage().window().maximize();
@@ -90,7 +81,5 @@ public class WindowTest
         driver.switchTo().window(multipleTabs.get(1));
         driver.close();
         driver.switchTo().window(multipleTabs.get(0));
-
-        driver.quit();
     }
 }
