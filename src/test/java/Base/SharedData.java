@@ -1,31 +1,34 @@
 package Base;
 
-import org.junit.After;
-import org.junit.Before;
+import PropertyUtility.PropertyFile;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.time.Duration;
 
 public class SharedData
 {
     //webdriver = variabila care ne ajuta sa interactionam cu site-ul si elementele lui
-    public WebDriver driver;
+    private WebDriver driver;
 
-    @Before
-    public void setup()
+    public void initiateDriver()
     {
-        //specificam unde se afla driverul pt browser
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\User\\Desktop\\Azimut\\Kits\\Automation\\chromedriver.exe");
-        //deschidem browserul
+        PropertyFile driverResource = new PropertyFile("DriverData/DriverResource");
+        System.setProperty(driverResource.getValue("driverBrowser"), driverResource.getValue("location"));
         driver = new ChromeDriver();
-
-        //adaugam adresa web
-        driver.get("http://demo.automationtesting.in/Index.html");
+        driver.get(driverResource.getValue("url"));
         driver.manage().window().maximize();
+        //wait implicit
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    @After
-    public void tearDown()
+    public void quitBrowser()
     {
         driver.quit();
+    }
+
+    public WebDriver getDriver()
+    {
+        return driver;
     }
 }
